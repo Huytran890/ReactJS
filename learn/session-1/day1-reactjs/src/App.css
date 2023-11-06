@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.space {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  color: red;
+}
+
+.dark {
+  background: #333;
+  color: #fff;
+}

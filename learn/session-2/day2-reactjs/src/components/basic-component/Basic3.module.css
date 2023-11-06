@@ -1,0 +1,22 @@
+.button {
+  padding: 12px 20px;
+  background-color: #f80;
+  color: #fff;
+  text-align: center;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+  outline: none;
+  font-size: 18px;
+  text-transform: capitalize;
+  transition: all ease 0.3s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button.button_dark {
+  background-color: #212121;
+}
