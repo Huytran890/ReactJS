@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 //! useEffect dùng để quản lý sự thay đổi của 1 cái state, sự kiện, gọi API và tránh nó rerender ko cần thiết, và cũng dùng để clean các sự kiện)
+
+//! Lưu ý: useEffect thực hiện dựa trên asynchronous tức là nó sẽ ưu tiên thực hiện render giao diện sau đó mới quay lại thực hiện action bên trong useEffect
 const UseStateOverriding = () => {
     const [count, setCount] = useState(0);
     useEffect(() => {
