@@ -3,9 +3,13 @@ import { useCatStore } from "../stores/catStore";
 
 export const CatController = () => {
   //   const { increaseBigCats, increaseSmallCats } = useCatStore();
+
+  //! Create auto generated selector
   //   const increaseBigCats = useCatStore.use.increaseBigCats();
   //   const increaseSmallCats = useCatStore.use.increaseSmallCats();
 
+
+  //! 2 cách dưới để tạo ra multi states selection (Có nghĩa là giống như ghi gộp import của cái trên tức là auto generated selector)
   // const { increaseBigCats, increaseSmallCats } = useCatStore(
   //   (state) => ({
   //     increaseBigCats: state.increaseBigCats,

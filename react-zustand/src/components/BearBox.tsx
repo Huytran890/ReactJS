@@ -4,9 +4,12 @@ import { useFoodStore } from "../stores/foodStore";
 import { shallow } from "zustand/shallow";
 
 export const BearBox = () => {
+  //! cach goi 1
   // const bears = useBearStore((state) => state.bears);
   // const increasePopulation = useBearStore((state) => state.increasePopulation);
   // const removeAllBears = useBearStore((state) => state.removeAllBears);
+
+  //! cach goi 2
   const { bears, increasePopulation, removeAllBears } = useBearStore();
 
   const [bgColor, setBgColor] = useState<
@@ -24,6 +27,7 @@ export const BearBox = () => {
     //   }
     // });
 
+    //! subscribe dùng để handle khi ta thực hiện 1 hành động tác động đến component khi thỏa điều kiện thì component mới re-render
     const unsub = useFoodStore.subscribe(
       (state) => state.fish,
       (fish, prevFish) => {
@@ -35,6 +39,8 @@ export const BearBox = () => {
         //   }
         // }
 
+        //? Đã bị middleware overide
+        //! đối số thứ 1 là cái ta cần quan tâm, khi nào nó thỏa điều kiện thì sẽ re-render, đối số thứ 2 là state hiện tại và state trước đó
         if (prevFish <= 5 && fish > 5) {
           setBgColor("lightgreen");
         } else if (prevFish > 5 && fish <= 5) {
@@ -43,6 +49,7 @@ export const BearBox = () => {
       },
       {
         equalityFn: shallow,
+        //! đối sô sẽ là lần đầu tiên thực hiện "đổi thành false để thấy khác biệt"
         fireImmediately: true,
       }
     );
@@ -58,6 +65,8 @@ export const BearBox = () => {
       <div>
         <button onClick={increasePopulation}>add bear</button>
         <button onClick={removeAllBears}>remove all bears</button>
+
+        {/* Dùng để clear storage */}
         <button onClick={useBearStore.persist.clearStorage}>
           clear storage
         </button>
