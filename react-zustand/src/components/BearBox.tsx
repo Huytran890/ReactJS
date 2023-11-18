@@ -19,6 +19,8 @@ export const BearBox = () => {
   // const fish = useFoodStore((state) => state.fish);
 
   useEffect(() => {
+    //! cách 1:
+    //! subscribe có thể dụng để gọi inside (nên dùng vs ueffect) hoặc outside component. Subscribe dùng để handle khi ta thực hiện 1 hành động tác động đến chính component được chỉ định mà k làm cho các component khác re-render
     // const unsub = useFoodStore.subscribe((state, prevState) => {
     //   if (prevState.fish <= 5 && state.fish > 5) {
     //     setBgColor("lightgreen");
@@ -27,7 +29,8 @@ export const BearBox = () => {
     //   }
     // });
 
-    //! subscribe dùng để handle khi ta thực hiện 1 hành động tác động đến component khi thỏa điều kiện thì component mới re-render
+    //! cách 2 dùng với middlewarre subscribeWithSelector để override lại subcribe bth 
+
     const unsub = useFoodStore.subscribe(
       (state) => state.fish,
       (fish, prevFish) => {
@@ -39,8 +42,8 @@ export const BearBox = () => {
         //   }
         // }
 
-        //? Đã bị middleware overide
-        //! đối số thứ 1 là cái ta cần quan tâm, khi nào nó thỏa điều kiện thì sẽ re-render, đối số thứ 2 là state hiện tại và state trước đó
+        //? Đã bị middleware override
+        //! đối số thứ 1 là cái ta cần quan tâm (cái cần lấy), khi nào nó thỏa điều kiện thì sẽ re-render, đối số thứ 2 là state hiện tại và state trước đó
         if (prevFish <= 5 && fish > 5) {
           setBgColor("lightgreen");
         } else if (prevFish > 5 && fish <= 5) {
@@ -49,7 +52,7 @@ export const BearBox = () => {
       },
       {
         equalityFn: shallow,
-        //! đối sô sẽ là lần đầu tiên thực hiện "đổi thành false để thấy khác biệt"
+        //! đối sô sẽ là lần đầu tiên thực hiện "đổi thành false để thấy khác biệt" (lần đầu chạy nó sẽ được gọi lun)
         fireImmediately: true,
       }
     );

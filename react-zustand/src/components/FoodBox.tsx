@@ -1,4 +1,3 @@
-import React from "react";
 import {
   useFoodStore,
   addOneFish,
@@ -10,7 +9,7 @@ export const FoodBox = () => {
   // const { fish, addOneFish, removeOneFish, removeAllFish } = useFoodStore();
 
   const fish = useFoodStore((state) => state.fish);
-  // const fish = useFoodStore.getState().fish; // non-reactive
+  // const fish = useFoodStore.getState().fish; // non-reactive (dev tool vẫn chạy nhưng nó sẽ ko hiện lên giao diện)
 
   const add5Fish = () => {
     useFoodStore.setState((state) => ({

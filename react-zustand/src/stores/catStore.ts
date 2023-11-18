@@ -15,6 +15,7 @@ type TCatStoreState = {
 
 const createCatSlice: StateCreator<
 	TCatStoreState,
+	//! đối số 2 là type của middleware
 	[
 		['zustand/immer', never],
 		['zustand/devtools', unknown],
