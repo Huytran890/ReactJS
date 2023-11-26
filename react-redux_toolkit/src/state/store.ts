@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './counter/counterSlice';
 
-//! Tạo store
+//! Tạo store (bên trong store bao gồm tất cả reducer và các middlewares)
 export const store = configureStore({
 	reducer: {
 		counter: counterReducer,
