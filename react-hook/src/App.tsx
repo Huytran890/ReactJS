@@ -9,6 +9,7 @@ import UseIdOverriding from "./hooks/UseIdOverriding"
 import UseImperativeHandleOverride from "./hooks/UseImperativeHandleOverride"
 import UseLayoutEffectOverriding from "./hooks/UseLayoutEffectOverriding"
 import UseMemoOverriding from "./hooks/UseMemoOverriding"
+import UseOptimistic from "./hooks/UseOptimistic"
 import { UseRefOverriding, UseRefOverriding2 } from "./hooks/UseRefOverriding"
 import UseTransition from "./hooks/UseTransition"
 import UseStateOverriding from "./hooks/useStateOverriding"
@@ -30,6 +31,7 @@ function App() {
       {/* <UseDeferredValueOverride /> */}
       {/* <TestUseMedia /> */}
       <UseLayoutEffectOverriding />
+      {/* <UseOptimistic /> */}
 
       {/* <Debounce /> */}
       {/* <LocalStorage /> */}
