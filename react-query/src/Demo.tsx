@@ -4,20 +4,24 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addTodo, fetchTodos } from "./api";
 import TodoCard from "./components/TodoCard";
 
+// caching 
+
 export default function Demo() {
     const queryClient = useQueryClient();
 
-    const [search, setSearch] = useState("");
+    const [search] = useState("");
     const [title, setTitle] = useState("");
 
     // useQuery dùng để lấy dữ liệu
-    const { data: todos, isLoading } = useQuery({
+    const { data: todos, isLoading, isError, error } = useQuery({
         queryKey: ["todos", { search }],
         queryFn: () => fetchTodos(search),
-        // không gọi ngầm về server
-        staleTime: Infinity,
-        // đổi từ cachingTime to gcTime (= 0 thì gỡ bỏ caching)
-        gcTime: 0
+
+        // Thời gian làm mới dữ liệu (= 0 thì không gọi ngầm về server)
+        // staleTime: 0,
+
+        // đổi từ cachingTime to gcTime (= 0 thì gỡ bỏ caching): là thời gian tồn tại caching dữ liệu (nếu = 0 thì luôn luôn fetching luôn hiện loading)
+        // gcTime: 0 //(default: 5000)
     });
 
 
@@ -34,10 +38,15 @@ export default function Demo() {
         return <div>Loading...</div>;
     }
 
+    if (isError) {
+        return <div>{error.message}</div>;
+    }
+
     return (
         <div>
             <div>
                 <input
+                    name="title"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
